@@ -167,7 +167,7 @@ def test_remove_by_index_is_equal_to_python_list(
     index = raw_index % len(values)
     array = from_list(values)
 
-    expected = values[:index] + values[index + 1 :]
+    expected = values[:index] + values[index + 1:]
     actual = to_list(remove(array, index))
 
     assert actual == expected
@@ -175,19 +175,27 @@ def test_remove_by_index_is_equal_to_python_list(
 
 
 @given(st.lists(st.integers()))
-def test_map_is_equal_to_python_list_comprehension(values: list[int]) -> None:
+def test_map_is_equal_to_python_list_comprehension(
+    values: list[int],
+) -> None:
     array = from_list(values)
 
-    assert to_list(da_map(array, lambda x: x + 1)) == [x + 1 for x in values]
+    actual = to_list(da_map(array, lambda x: x + 1))
+    expected = [x + 1 for x in values]
+
+    assert actual == expected
 
 
 @given(st.lists(st.integers()))
-def test_filter_is_equal_to_python_list_comprehension(values: list[int]) -> None:
+def test_filter_is_equal_to_python_list_comprehension(
+    values: list[int],
+) -> None:
     array = from_list(values)
 
-    assert to_list(da_filter(array, lambda x: x % 2 == 0)) == [
-        x for x in values if x % 2 == 0
-    ]
+    actual = to_list(da_filter(array, lambda x: x % 2 == 0))
+    expected = [x for x in values if x % 2 == 0]
+
+    assert actual == expected
 
 
 @given(st.lists(st.integers()))

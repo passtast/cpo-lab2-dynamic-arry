@@ -54,7 +54,7 @@ def remove(array: DynamicArray[T], index: int) -> DynamicArray[T]:
     if index < 0 or index >= len(array):
         raise IndexError("index out of range")
 
-    return DynamicArray(array._items[:index] + array._items[index + 1 :])
+    return DynamicArray(array._items[:index] + array._items[index + 1:])
 
 
 def length(array: DynamicArray[T]) -> int:
@@ -89,7 +89,11 @@ def from_list(values: list[T]) -> DynamicArray[T]:
     return DynamicArray(values)
 
 
-def find(array: DynamicArray[T], predicate: Callable[[T], bool]) -> Optional[T]:
+def find(
+    array: DynamicArray[T],
+    predicate: Callable[[T], bool],
+) -> Optional[T]:
+
     def helper(index: int) -> Optional[T]:
         if index == len(array):
             return None
@@ -141,7 +145,11 @@ def reduce(
     initial: Any = _MISSING,
 ) -> Any:
     if len(array) == 0 and initial is _MISSING:
-        raise TypeError("reduce() of empty DynamicArray with no initial value")
+        message = (
+            "reduce() of empty DynamicArray "
+            "with no initial value"
+        )
+        raise TypeError(message)
 
     def helper(index: int, accumulator: Any) -> Any:
         if index == len(array):
