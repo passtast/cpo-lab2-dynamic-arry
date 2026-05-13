@@ -1,4 +1,4 @@
-# Lab 2: Immutable Dynamic Array
+Group2 - CPO - Lab 2: Immutable Dynamic Array
 
 ## Description
 
@@ -68,3 +68,14 @@ The project includes:
 - Added unit tests.
 - Added property-based tests.
 - Updated README documentation.
+
+## Summary
+
+This laboratory work implements an immutable dynamic array for variant 2.
+The implementation follows a functional programming style: operations do not
+modify the original array and always return a new `DynamicArray` object.
+
+The main structure is based on tuple storage to prevent accidental mutation.
+The project also includes unit tests and property-based tests, including tests
+for immutability, conversion, concatenation, mapping, filtering, reduction, and
+monoid properties of array concatenation.
