@@ -150,6 +150,35 @@ def test_concat_is_equal_to_python_list_concat(
     assert to_list(concat(from_list(left), from_list(right))) == left + right
 
 
+@given(st.lists(st.integers()))
+def test_concat_has_empty_identity(values: list[int]) -> None:
+    array = from_list(values)
+    empty_array: DynamicArray[int] = empty()
+
+    assert concat(empty_array, array) == array
+    assert concat(array, empty_array) == array
+
+
+@given(
+    st.lists(st.integers()),
+    st.lists(st.integers()),
+    st.lists(st.integers()),
+)
+def test_concat_is_associative(
+    first_values: list[int],
+    second_values: list[int],
+    third_values: list[int],
+) -> None:
+    first = from_list(first_values)
+    second = from_list(second_values)
+    third = from_list(third_values)
+
+    left_result = concat(concat(first, second), third)
+    right_result = concat(first, concat(second, third))
+
+    assert left_result == right_result
+
+
 @given(st.integers(), st.lists(st.integers()))
 def test_cons_adds_value_to_head(value: int, values: list[int]) -> None:
     array = from_list(values)
