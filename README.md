@@ -1,4 +1,4 @@
-# Group2 - CPO - Lab 2: Immutable Dynamic Array
+# Lab 2 Group2 - CPO - Immutable Dynamic Array
 
 
 
