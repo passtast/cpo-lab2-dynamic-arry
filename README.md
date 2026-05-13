@@ -1,8 +1,4 @@
-# Lab 2: Immutable Dynamic Array
-
-## Group
-
- Group2 - CPO
+# group2 - CPO Lab 2 - Variant 2: Dynamic Array
 
 ## Description
 
